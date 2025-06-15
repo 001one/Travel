@@ -5,6 +5,7 @@ import { client } from "@/sanity/client";
 import Body from "./Body";
 import { Suspense } from "react";
 import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
 
 const POSTS_QUERY = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0...12]{
   _id,
@@ -31,25 +32,21 @@ export default async function PostsList() {
         <span className="text-lg font-semibold">Back to Home</span>
       </Link>
       </div> 
-  <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-visible">
-
+      <div className="relative">
+  <ul className="flex gap-6 overflow-x-auto whitespace-nowrap scrollbar-hide p-2">
    {posts.map((post) => (
-  <li key={post._id} className="hover:bg-gray-50 p-4 rounded-lg transition w-full h-auto shadow-sm hover:shadow-2xl">
+                    <li key={post._id} className="relative w-[220px] flex-shrink-0 bg-white p-3 rounded-lg shadow-md hover:shadow-2xl">
     <Link href={`/${post.slug.current}`} className="block space-y-2">
       <h3 className="text-xl font-semibold text-blue-600 hover:underline">{post.title}</h3>
-      <time className="text-sm text-gray-500">
-        {new Date(post.publishedAt).toLocaleDateString(undefined, {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </time>
+   
 
       {post.thumbnailImage?.url && (
-        <img
+        <Image
           src={post.thumbnailImage.url}
           alt={post.thumbnailImage.alt || "Post thumbnail"}
-          className="w-full h-64 object-cover rounded-lg shadow"
+           width={220}
+          height={220}
+          className="rounded-lg w-full h-auto object-cover"
         />
       )}
     </Link>
@@ -57,7 +54,9 @@ export default async function PostsList() {
 ))}
 
       </ul>
+      </div>
     </section>
     </Suspense>
+    
   );
 }

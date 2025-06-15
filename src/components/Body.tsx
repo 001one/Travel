@@ -3,6 +3,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { PortableText } from "@portabletext/react";
+import Image from "next/image";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
@@ -31,13 +32,16 @@ const serializers = {
     externalImage: ({ value }: { value: ExternalImageNode }) => {
       if (!value?.url) return null;
       return (
-        <div className="my-6">
-          <img
-            src={value.url}
-            alt={value.alt || "External Image"}
-            className="w-full max-h-[500px] object-cover rounded-xl shadow"
-          />
-        </div>
+         <div className="relative w-full my-6 aspect-video max-w-4xl mx-auto rounded-xl overflow-hidden shadow">
+      <Image
+        src={value.url}
+        alt={value.alt || "External Image"}
+        fill
+        
+        className="object-contain"
+        priority
+      />
+    </div>
       );
     },
   },

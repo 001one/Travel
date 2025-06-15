@@ -4,6 +4,7 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
 import Link from "next/link";
 import Body from "@/components/Body";
+import Image from "next/image";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
@@ -42,16 +43,18 @@ export default async function PostPage({
 )}
 
       </div>
-       {postImageUrl && (
-        <img
-          src={postImageUrl}
-          alt={post.title}
-          className="aspect-video rounded-xl"
-          width="550"
-          height="310"
-        />
-        
-      )}
+      {postImageUrl && (
+  <div className="relative w-[550px] h-[310px] aspect-video rounded-xl overflow-hidden my-4">
+    <Image
+      src={postImageUrl}
+      alt={post.title ?? "Post Image"}
+      
+   className="w-full max-w-3xl h-auto object-cover rounded-lg"
+              width={800} // Adjust based on your layout needs
+              height={500} 
+    />
+  </div>
+)}
  
     </main>
   );
