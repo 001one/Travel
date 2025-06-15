@@ -6,7 +6,16 @@ import Body from "./Body";
 import { Suspense } from "react";
 import { ArrowLeft } from "lucide-react";
 
-const POSTS_QUERY = `*[ _type == "post" && defined(slug.current) ] | order(publishedAt desc)[0...12]{ _id, title, slug, publishedAt,  body }`;
+const POSTS_QUERY = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0...12]{
+  _id,
+  title,
+  slug,
+  publishedAt,
+  image,
+  body,
+  "thumbnailImage": body[ _type == "externalImage" ][0]
+}`;
+
 
 export default async function PostsList() {
   const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {});
@@ -25,14 +34,9 @@ export default async function PostsList() {
   <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-visible">
 
    {posts.map((post) => (
-  <li
-    key={post._id}
-    className="hover:bg-gray-50 p-4 rounded-lg transition w-full h-auto shadow-sm hover:shadow-2xl"
-  >
-    <Link href={`/${post.slug.current}`} className="block">
-      <h3 className="text-xl font-semibold text-blue-600 hover:underline">
-        {post.title}
-      </h3>
+  <li key={post._id} className="hover:bg-gray-50 p-4 rounded-lg transition w-full h-auto shadow-sm hover:shadow-2xl">
+    <Link href={`/${post.slug.current}`} className="block space-y-2">
+      <h3 className="text-xl font-semibold text-blue-600 hover:underline">{post.title}</h3>
       <time className="text-sm text-gray-500">
         {new Date(post.publishedAt).toLocaleDateString(undefined, {
           year: "numeric",
@@ -40,10 +44,18 @@ export default async function PostsList() {
           day: "numeric",
         })}
       </time>
+
+      {post.thumbnailImage?.url && (
+        <img
+          src={post.thumbnailImage.url}
+          alt={post.thumbnailImage.alt || "Post thumbnail"}
+          className="w-full h-64 object-cover rounded-lg shadow"
+        />
+      )}
     </Link>
-    {post.body && <Body blocks={post.body} />}
   </li>
 ))}
+
       </ul>
     </section>
     </Suspense>
