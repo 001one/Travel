@@ -5,6 +5,10 @@ import { client } from "@/sanity/client";
 import Link from "next/link";
 import Body from "@/components/Body";
 import Image from "next/image";
+import { Metadata } from "next";
+
+// Enable ISR (optional)
+export const revalidate = 30;
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
@@ -14,17 +18,16 @@ const urlFor = (source: SanityImageSource) =>
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
 
-const options = { next: { revalidate: 30 } };
+interface PostPageProps {
+  params: {
+    slug: string;
+  };
+}
 
-export default async function PostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function PostPage({ params }: PostPageProps) {
   const post = await client.fetch<SanityDocument>(
     POST_QUERY,
-    { slug: params.slug },
-    options
+    { slug: params.slug }
   );
 
   const postImageUrl = post?.image
