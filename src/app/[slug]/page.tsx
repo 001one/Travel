@@ -7,6 +7,7 @@ import Body from "@/components/Body";
 import Image from "next/image";
 import { Metadata } from "next";
 
+
 // Enable ISR (optional)
 export const revalidate = 30;
 
