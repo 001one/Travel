@@ -35,46 +35,49 @@ export default async function PostPage({ params }: PostPageProps) {
     : null;
 
   return (
-<main className="w-full min-h-screen px-4 sm:px-6 lg:px-8 mb-50">
-      <Link
-        href="/"
-        className="hover:underline hover:bg-blue-500 hover:text-white rounded-lg p-4 mb-30"
-      >
-        ← Back to posts
-      </Link>
+    <main className="w-full min-h-screen px-4 sm:px-6 lg:px-8 pb-24">
+      <div className="max-w-3xl mx-auto space-y-10">
+        <Link
+          href="/"
+          className="hover:underline hover:bg-blue-500 hover:text-white rounded-lg p-4 inline-block"
+        >
+          ← Back to posts
+        </Link>
 
-      <h1 className="text-4xl font-bold mb-8">
-        {post?.title || "Untitled Post"}
-      </h1>
+        <h1 className="text-4xl font-bold">
+          {post?.title || "Untitled Post"}
+        </h1>
 
-      <div className="prose h-[1000px]">
-        <p>
+        <p className="text-gray-500">
           Published:{" "}
           {post?.publishedAt
             ? new Date(post.publishedAt).toLocaleDateString()
             : "Unknown"}
         </p>
 
-        {Array.isArray(post?.body) && post.body.length > 0 ? (
-          <Body blocks={post.body} />
-        ) : (
-          <p className="text-gray-500 italic mt-4">
-            No content available for this post.
-          </p>
+        {postImageUrl && (
+          <div className="w-full rounded-xl overflow-hidden">
+            <Image
+              src={postImageUrl}
+              alt={post.title ?? "Post Image"}
+              className="w-full h-auto object-cover rounded-lg"
+              width={800}
+              height={450}
+              priority
+            />
+          </div>
         )}
-      </div>
 
-      {postImageUrl && (
-        <div className="relative w-[550px] h-[310px] aspect-video rounded-xl overflow-hidden my-4">
-          <Image
-            src={postImageUrl}
-            alt={post.title ?? "Post Image"}
-            className="w-full max-w-3xl h-auto object-contain rounded-lg"
-            width={800}
-            height={800}
-          />
+        <div className="prose max-w-none">
+          {Array.isArray(post?.body) && post.body.length > 0 ? (
+            <Body blocks={post.body} />
+          ) : (
+            <p className="text-gray-500 italic">
+              No content available for this post.
+            </p>
+          )}
         </div>
-      )}
+      </div>
     </main>
   );
 }
