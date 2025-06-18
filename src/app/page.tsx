@@ -10,7 +10,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="w-full min-h-screen px-4 sm:px-6 lg:px-8 ">
-   <div className="hidden lg:flex justify-between items-start gap-6 mb-8">
+   <div className="hidden lg:flex justify-between items-start gap-6 mb-8  bg-gradient-to-b from-white via-[#79f5e5] to-[#ffffff]">
         {/* Left Sidebar (Dynamic Categories) */}
         <div className="w-1/4">
           <CategorySidebar />

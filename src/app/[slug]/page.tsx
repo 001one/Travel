@@ -35,7 +35,7 @@ export default async function PostPage({ params }: PostPageProps) {
     : null;
 
   return (
-    <main className="w-full min-h-screen px-4 sm:px-6 lg:px-8">
+<main className="w-full min-h-screen px-4 sm:px-6 lg:px-8 mb-50">
       <Link
         href="/"
         className="hover:underline hover:bg-blue-500 hover:text-white rounded-lg p-4 mb-30"

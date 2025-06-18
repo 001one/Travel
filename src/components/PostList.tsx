@@ -43,24 +43,30 @@ export default async function PostsList() {
             {category.posts.map((post: any) => (
               <li
                 key={post._id}
-                className="min-w-[220px] max-w-[220px] flex-shrink-0 bg-white p-3 rounded-lg shadow hover:shadow-lg transition"
+                className="w-[400px] flex-shrink-0 bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden"
               >
-                <Link href={`/${post.slug.current}`} className="block space-y-2">
-                  <h3 className="text-md font-semibold text-blue-700 line-clamp-2">{post.title}</h3>
+                <Link href={`/${post.slug.current}`} className="block">
                   {post.thumbnailImage?.url && (
                     <Image
                       src={post.thumbnailImage.url}
                       alt={post.thumbnailImage.alt || "Post thumbnail"}
-                      width={220}
-                      height={150}
-                      className="rounded-md w-full h-[150px] object-cover"
+                      width={400}
+                      height={400}
+                      className="w-full h-[400px] object-cover"
+                      
+                      priority
                     />
                   )}
-                  <p className="text-sm text-gray-500">
-                    {post.publishedAt
-                      ? new Date(post.publishedAt).toLocaleDateString()
-                      : "Unpublished"}
-                  </p>
+                  <div className="p-4 space-y-2">
+                    <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
+                      {post.title}
+                    </h3>
+                    <p className="text-sm text-gray-500">
+                      {post.publishedAt
+                        ? new Date(post.publishedAt).toLocaleDateString()
+                        : "Unpublished"}
+                    </p>
+                  </div>
                 </Link>
               </li>
             ))}
