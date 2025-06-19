@@ -1,46 +1,46 @@
-import { Flower, Gift, Truck } from 'lucide-react';
+import { Globe, Camera, Plane } from 'lucide-react';
 
 const FlowerShopSection = () => {
   return (
-    <section className="my-10 px-6 py-8 bg-gray-700 text-white rounded-lg shadow-lg">
+    <section className="my-10 px-6 py-8 bg-blue-900 text-white rounded-lg shadow-lg">
       <h2 className="text-3xl font-semibold text-center mb-6">
-        Welcome to Happier Paradise Florist 🌸
+        Welcome to Travel With Neeo 🌍
       </h2>
-      
+
       <p className="mb-4">
-        Welcome to your ultimate floral destination! Our flower shop is here to make your special moments even more unforgettable. Whether you're searching for a beautiful bouquet 💐, wedding flowers 👰, or elegant arrangements for events 🎉, we've got it all. We're not just any florist; we're your go-to florist for all occasions. Say goodbye to ordinary flowers and embrace the vibrant and elegant designs we create for you.
+        Your journey begins here! 🌟 Travel With Neeo is your trusted source for travel inspiration, destination guides, beautiful imagery, and practical tips for planning memorable trips. Whether you're exploring iconic cities 🏙️, relaxing on tropical beaches 🏝️, or hiking remote trails 🥾, we’re here to guide your adventure.
       </p>
 
       <h3 className="text-2xl font-semibold mt-6 mb-4">
-        Best Prices, Premium Blooms, and Diverse Flower Arrangements 🌹
+        Discover Breathtaking Places Around the World ✈️
       </h3>
       <p className="mb-4">
-        Our commitment is to provide you with unbeatable prices while offering the freshest and most beautiful flowers. Explore our wide variety of floral arrangements, from elegant bouquets 💐 to stunning wedding flowers 💍, designed to suit every occasion. We pride ourselves on offering only the highest quality blooms at the best prices. From classic roses 🌹 to exotic lilies 🌺 and tulips 🌷, we deliver vibrant, fragrant flowers that you’ll love.
+        From popular travel spots to hidden gems, we highlight diverse destinations that spark curiosity and wanderlust. Whether you're dreaming of mountain escapes 🏔️, historic towns 🏰, or exotic islands 🌴, you’ll find ideas and tips for every kind of traveler.
       </p>
 
       <h3 className="text-2xl font-semibold mt-6 mb-4">
-        Exclusive Deals, Special Promotions, and Seasonal Sales 🎁
+        Travel Tips, Guides & Local Know-How 📸
       </h3>
       <p className="mb-4">
-        Get ready for exciting offers 💥, exclusive discounts 💸, and limited-time promotions when you shop with us. Our flower shop is your destination for seasonal sales, making it easy to find the perfect flowers at great prices. From flash sales ⚡ on bouquets to discounts for special occasions like Valentine’s Day 💘, Mother’s Day 🌷, and Christmas 🎄, we guarantee that your flower shopping experience will be both affordable and delightful.
+        Make your journey smoother with travel guides, packing checklists 🎒, safety advice, and local culture insights. We help you travel smarter with practical information that helps you avoid tourist traps and enjoy authentic experiences.
       </p>
 
       <h3 className="text-2xl font-semibold mt-6 mb-4">
-        Exceptional Services for Every Occasion 🚚
+        Budget-Friendly Ideas & Inspiring Journeys 🌄
       </h3>
       <p className="mb-4">
-        At Happier Paradise Florist, we ensure your shopping experience is as enjoyable as receiving your flowers 🌸. We offer reliable delivery services 🚚, bringing your beautiful bouquets directly to your doorstep 🏡, hassle-free. And for your convenience, we offer free delivery 📦 on select orders, ensuring you receive your flowers without any extra cost. Whether you’re sending a bouquet to a loved one 💌 or decorating your wedding venue 💒, we make sure you receive only the best.
+        Explore how to travel well on any budget. From affordable getaways 💸 to once-in-a-lifetime splurges, we offer flexible inspiration and practical ideas. Discover where to go, what to see, and how to do it all without breaking the bank.
       </p>
 
       <h3 className="text-2xl font-semibold mt-6 mb-4">
-        Don't Miss Our Seasonal Floral Events 🎉
+        Offbeat Paths and Must-See Landmarks 🗽
       </h3>
       <p className="mb-4">
-        Stay tuned for our exciting seasonal events 📅 and special promotions! From our annual Valentine’s Day floral specials ❤️ to Mother’s Day events 🌼, we ensure you have access to exclusive deals on your favorite flowers. Our flower shop is always buzzing with new arrivals 🌿, offering unique and rare blooms 🌸 to suit any occasion.
+        Go beyond the usual and uncover lesser-known destinations and iconic landmarks. Our content celebrates the spirit of exploration — from peaceful nature spots 🌲 to lively cultural hubs 🕌, there's always something new to discover.
       </p>
 
       <p className="mb-4">
-        At Happier Paradise Florist, we’ve brought the beauty of nature right to your fingertips. We’re not just a flower shop 🌺; we’re your partner in making your events and special moments extra special 🎉. Shop with us today and experience the joy of fresh flowers delivered straight to your door 📦.
+        At Travel With Neeo, we believe travel is about more than just places — it’s about the stories you create along the way. 🌐 Join us and get inspired to explore, learn, and connect with the world around you.
       </p>
     </section>
   );

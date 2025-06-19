@@ -9,36 +9,37 @@ interface FAQ {
 
 const faqs: FAQ[] = [
   {
-    question: "What types of floral arrangements do you offer?",
+    question: "What kind of travel content do you provide?",
     answer:
-      "We provide a variety of floral arrangements, including bouquets, centerpieces, wedding florals, sympathy flowers, and custom designs for any occasion.",
+      "We share destination guides, must-visit places, travel tips, seasonal recommendations, cultural insights, and updated travel trends for 2025 and beyond.",
   },
   {
-    question: "Do you offer same-day flower delivery?",
+    question: "How do you choose the places you feature?",
     answer:
-      "Yes, we offer same-day flower delivery for select arrangements. Please place your order early to ensure availability.",
+      "Our featured destinations are selected based on cultural value, uniqueness, popularity, traveler reviews, and emerging trends. We aim to highlight both popular and hidden gems around the world.",
   },
   {
-    question: "Can I request a custom floral arrangement?",
+    question: "Is your travel information up to date?",
     answer:
-      "Absolutely! We specialize in custom floral designs tailored to your preferences, event theme, and budget. Contact us to discuss your vision.",
+      "Yes, we regularly update our content to reflect the latest travel advisories, seasonal highlights, visa policies, and local regulations for each destination.",
   },
   {
-    question: "How do I take care of my flowers to make them last longer?",
+    question: "Do you include travel safety tips?",
     answer:
-      "To extend the life of your flowers, keep them in fresh water, trim the stems at an angle every few days, and place them away from direct sunlight and heat sources.",
+      "Absolutely. Each destination guide includes essential safety tips, health advisories, local customs, and practical information to help you travel smart.",
   },
   {
-    question: "Do you provide floral arrangements for weddings and events?",
+    question: "Can I use your content to plan my trip?",
     answer:
-      "Yes! We create stunning floral arrangements for weddings, corporate events, birthdays, and other special occasions. Reach out to us to plan your floral decor.",
+      "Yes! While we don't offer booking services, our articles and guides are designed to help you research and plan your travels with confidence.",
   },
   {
-    question: "How do I place an order?",
+    question: "Are the photos and images on your site original?",
     answer:
-      "You can place an order through our website, give us a call, or visit our shop to select your perfect arrangement.",
+      "Many of our images are either original or licensed from professional sources. We aim to provide high-quality, inspiring visuals that reflect the true essence of each destination.",
   },
 ];
+
 
  
   

@@ -49,7 +49,7 @@ const Navbar = () => {
     href="/videos"
     className="group bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all duration-200 shadow hover:shadow-2xl flex items-center gap-2 whitespace-nowrap  hover:scale-110"
   >
-    RCC Animation Youtube videos
+    All places to visit
     <ArrowRight className="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-5" />
   </Link>
 </div>
@@ -84,7 +84,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
               className="group bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all duration-200 shadow hover:shadow-2xl flex items-center gap-2 whitespace-nowrap  "
   >
-    RCC Animation Youtube videos
+    All places to visit
     <ArrowRight className="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-5 hover:Scale-155" />
             
              
