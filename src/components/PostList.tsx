@@ -26,7 +26,7 @@ export default async function PostsList() {
   return (
     <section className="space-y-16 px-4">
       {categories.map((category) => (
-        <div key={category._id}>
+        <div key={category._id} className="p-4">
           {/* Category header */}
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-bold">{category.title}</h2>
@@ -39,36 +39,35 @@ export default async function PostsList() {
           </div>
 
           {/* Horizontally scrollable posts */}
-          <ul className="flex gap-4 overflow-x-auto scrollbar-hide p-1">
+          <ul className="flex gap-4 overflow-x-auto scrollbar-hide p-5">
             {category.posts.map((post: any) => (
               <li
-                key={post._id}
-                className="w-[400px] flex-shrink-0 bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden"
-              >
-                <Link href={`/${post.slug.current}`} className="block">
-                  {post.thumbnailImage?.url && (
-                    <Image
-                      src={post.thumbnailImage.url}
-                      alt={post.thumbnailImage.alt || "Post thumbnail"}
-                      width={400}
-                      height={400}
-                      className="w-full h-[400px] object-cover"
-                      
-                      priority
-                    />
-                  )}
-                  <div className="p-4 space-y-2">
-                    <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-sm text-gray-500">
-                      {post.publishedAt
-                        ? new Date(post.publishedAt).toLocaleDateString()
-                        : "Unpublished"}
-                    </p>
-                  </div>
-                </Link>
-              </li>
+  key={post._id}
+  className="relative w-[320px] flex-shrink-0 bg-white p-3 rounded-lg shadow-md hover:shadow-2xl"
+>
+  <Link href={`/${post.slug.current}`} className="block">
+    {post.thumbnailImage?.url && (
+      <Image
+        src={post.thumbnailImage.url}
+        alt={post.thumbnailImage.alt || "Post thumbnail"}
+        width={320}
+        height={270}
+        className="rounded-lg w-full h-[270px] object-cover"
+      />
+    )}
+    <div className="p-4 space-y-2">
+      <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
+        {post.title}
+      </h3>
+      <p className="text-sm text-gray-500">
+        {post.publishedAt
+          ? new Date(post.publishedAt).toLocaleDateString()
+          : "Unpublished"}
+      </p>
+    </div>
+  </Link>
+</li>
+
             ))}
           </ul>
         </div>

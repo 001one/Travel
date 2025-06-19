@@ -16,15 +16,13 @@ const POSTS_BY_CATEGORY_QUERY = `
   }
 `;
 
-// Fallback image (public/static/fallback.jpg or hosted URL)
-const FALLBACK_IMAGE = "/fallback.jpg"; // Make sure this file exists in /public
+const FALLBACK_IMAGE = "/fallback.jpg";
 
 export default async function CategoryPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  // ✅ FIXED: Corrected client.fetch() call and types
   const category = await client.fetch<{
     title: string;
     posts: SanityDocument[];
@@ -33,35 +31,35 @@ export default async function CategoryPage({
   });
 
   return (
-    <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-      <h1 className="text-3xl font-bold mb-8 capitalize">
+    <main className="w-full min-h-screen px-4 sm:px-6 lg:px-8 mt-30">
+      <h1 className="font-bold flex justify-center text-5xl mt-5 text-blue-600">
         Posts in: {category?.title || params.slug}
       </h1>
 
       {category?.posts?.length === 0 ? (
-        <p className="text-gray-600">No posts found in this category.</p>
+        <p className="text-gray-600 mt-10 text-center">No posts found in this category.</p>
       ) : (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 w-full shadow-lg p-4 mt-6">
           {category.posts.map((post) => (
             <li
               key={post._id}
-              className="bg-white p-4 rounded-xl shadow hover:shadow-md transition space-y-2"
+              className="relative hover:underline hover:bg-white p-2 rounded-lg hover:text-blue-400 hover:shadow-2xl transition-all duration-300"
             >
-              <Link
-                href={`/${post.slug.current}`}
-                className="block space-y-2"
-              >
-                <h2 className="text-blue-700 font-semibold text-lg line-clamp-2">
+              <Link href={`/${post.slug.current}`} className="block space-y-2">
+                <div className="relative">
+                  <Image
+                    src={post.thumbnailImage?.url || FALLBACK_IMAGE}
+                    alt={post.thumbnailImage?.alt || "Post thumbnail"}
+                    className="rounded-lg w-full h-auto max-h-[450px] object-cover sm:h-[350px] md:h-[400px] lg:h-[450px]"
+                    width={600}
+                    height={550}
+                    priority
+                  />
+                </div>
+
+                <h2 className="text-xl font-semibold mt-2 line-clamp-2">
                   {post.title || "Untitled Post"}
                 </h2>
-
-                <Image
-                  src={post.thumbnailImage?.url || FALLBACK_IMAGE}
-                  alt={post.thumbnailImage?.alt || "Post thumbnail"}
-                  width={500}
-                  height={300}
-                  className="rounded-md w-full h-[180px] object-cover"
-                />
 
                 <p className="text-sm text-gray-500">
                   {post.publishedAt
