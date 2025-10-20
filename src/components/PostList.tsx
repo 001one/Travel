@@ -24,7 +24,7 @@ export default async function PostsList() {
   const categories = await client.fetch<SanityDocument[]>(CATEGORY_WITH_POSTS_QUERY);
 
   return (
-    <section className="space-y-16 px-4">
+    <section className="space-y-16 p-4">
       {categories.map((category) => (
         <div key={category._id} className="p-4">
           {/* Category header */}
@@ -38,25 +38,25 @@ export default async function PostsList() {
             </Link>
           </div>
 
-          {/* Horizontally scrollable posts */}
-          <ul className="flex gap-4 overflow-x-auto scrollbar-hide p-5">
-            {category.posts.map((post: any) => (
-              <li
+         {/* Horizontally scrollable posts */}
+<ul className="w-screen max-w-none flex gap-4 overflow-x-auto whitespace-nowrap scrollbar-hide -ml-4 pl-4 pr-4 snap-x snap-mandatory">
+  {category.posts.map((post: any) => (
+<li
   key={post._id}
-  className="relative w-[320px] flex-shrink-0 bg-white p-3 rounded-lg shadow-md hover:shadow-2xl"
+  className="relative flex-shrink-0 min-w-0 bg-white p-3 rounded-lg shadow-md hover:shadow-2xl w-[calc(100vw/2)] sm:w-[220px] md:w-[260px] lg:w-[280px] xl:w-[320px] snap-start"
 >
   <Link href={`/${post.slug.current}`} className="block">
     {post.thumbnailImage?.url && (
       <Image
         src={post.thumbnailImage.url}
         alt={post.thumbnailImage.alt || "Post thumbnail"}
-        width={320}
-        height={270}
-        className="rounded-lg w-full h-[270px] object-cover"
+        width={500}
+        height={400}
+        className="rounded-lg w-full h-[220px] sm:h-[250px] object-cover"
       />
     )}
     <div className="p-4 space-y-2">
-      <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
+      <h3 className="text-md font-semibold text-gray-800 truncate w-full overflow-hidden whitespace-nowrap">
         {post.title}
       </h3>
       <p className="text-sm text-gray-500">
@@ -68,8 +68,10 @@ export default async function PostsList() {
   </Link>
 </li>
 
-            ))}
-          </ul>
+
+  ))}
+</ul>
+
         </div>
       ))}
     </section>

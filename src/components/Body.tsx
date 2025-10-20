@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
@@ -32,28 +32,43 @@ export default function Body({ blocks }: BodyProps) {
           </div>
         );
       },
-      externalImage: ({ value }: { value: ExternalImageNode }) => {
-        if (!value?.url) return null;
+    externalImage: ({ value }: { value: ExternalImageNode }) => {
+  if (!value?.url) return null;
 
-        return (
-          <>
-            {/* Thumbnail Image */}
-               <div
-        onClick={() => setModalImageUrl(value.url)}
-        className="relative w-full max-w-4xl mx-auto my-6 h-[450px] rounded-xl overflow-hidden shadow-lg cursor-pointer"
-      >
-        <Image
-          src={value.url}
-          alt={value.alt || "External Image"}
-          fill
-          className="object-contain"
-          priority
-          sizes="(max-width: 768px) 100vw, 700px"
-        />
-      </div>
-          </>
-        );
-      },
+  const [orientation, setOrientation] = useState<"portrait" | "landscape" | null>(null);
+
+  // Detect whether the image is portrait or landscape
+  useEffect(() => {
+    const img = new window.Image();
+    img.src = value.url;
+    img.onload = () => {
+      setOrientation(img.width > img.height ? "landscape" : "portrait");
+    };
+  }, [value.url]);
+
+  const isPortrait = orientation === "portrait";
+
+  return (
+<div
+  onClick={() => setModalImageUrl(value.url)}
+  className={`relative mx-auto my-8 overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform duration-300
+    ${isPortrait ? "w-[80%] max-w-2xl aspect-[3/4]" : "w-[95%] max-w-6xl aspect-auto"}
+  `}
+>
+
+
+      <Image
+        src={value.url}
+        alt={value.alt || "External Image"}
+        fill
+        className="object-contain rounded-xl "
+        priority
+        sizes="(max-width: 768px) 100vw, 700px"
+      />
+    </div>
+  );
+},
+
     },
   };
 

@@ -56,19 +56,19 @@ export default async function PostPage({ params }: PostPageProps) {
             : "Unknown"}
         </p>
 
-        {postImageUrl && (
-         <div className="w-full max-w-3xl mx-auto mt-4">
-  <Image
-    src={postImageUrl}
-    alt={post.title ?? "Post Image"}
-    className="w-full h-auto object-cover rounded-lg"
-    width={800}
-    height={500}
-    priority
-  />
-</div>
+       {postImageUrl && (
+  <div className="relative w-full md:w-2/3 lg:w-1/2 mx-auto aspect-auto max-h-[80vh]">
+    <Image
+      src={postImageUrl}
+      alt={post.title ?? "Post Image"}
+      fill
+      className="rounded-xl shadow-md object-contain"
+      priority
+    />
+  </div>
+)}
 
-        )}
+
 
         <div className="prose max-w-none">
           {Array.isArray(post?.body) && post.body.length > 0 ? (
