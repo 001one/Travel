@@ -8,6 +8,7 @@ import Image from "next/image";
 import { Metadata } from "next";
 import CategoriesGrid from "@/components/CategoriesGrid";
 import RelatedPostsSidebar from "@/components/RelatedPostsSidebar";
+import RelatedCategoryPosts from "@/components/RelatedCategoryPosts";
 
 
 // Enable ISR (optional)
@@ -16,11 +17,13 @@ export const revalidate = 30;
 const POST_QUERY = `
 {
   "post": *[_type == "post" && slug.current == $slug][0]{
+    _id,
     title,
     slug,
     image,
     publishedAt,
-    body
+    body,
+    categories[]->{ _id, title, slug } // ✅ ensures category refs come through
   },
   "categories": *[_type == "category"] | order(_createdAt desc)[0...6]{
     _id,
@@ -45,11 +48,12 @@ interface PostPageProps {
   };
 }
 
-export default async function PostPage({ params }: PostPageProps) {
-  const resolvedParams = await params; // ✅ ensure it's awaited
+export default async function PostPage(props: PostPageProps) {
+  const params = await props.params; // ✅ explicitly await params once
   const { post, categories } = await client.fetch(POST_QUERY, {
-    slug: resolvedParams.slug,
+    slug: params.slug,
   });
+
 
 
 
@@ -101,8 +105,19 @@ return (
             </p>
           )}
 
-          {/* Categories grid */}
+
+          
+
+      {post?.categories?.[0]?._id && (
+  <RelatedCategoryPosts
+    categoryId={post.categories[0]._id}
+    currentPostSlug={params.slug} // ✅ fine to use directly
+  />
+)}
+
+   {/* Categories grid */}
           <CategoriesGrid categories={categories || []} />
+
         </div>
       </div>
 
