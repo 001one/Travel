@@ -27,7 +27,7 @@ const Navbar = () => {
             height={60}
             className="object-contain"
           />
-          <span className="md:text-5xl text-3xl font-bold text-gray-900 hover:text-blue-500 active:text-blue-500">OpticOdds</span>
+          <span className="md:text-5xl text-2xl font-bold text-violet-600 hover:text-blue-500 active:text-blue-500 ">NEEOTECH</span>
         </Link>
 
         {/* Navigation Links */}

@@ -1,8 +1,8 @@
 import Carousel from "@/components/Carousel";
 import CategorySidebar from "@/components/CategorySidebar";
-import FAQSection from "@/components/FAQSection";
+
 import FeaturedServices from "@/components/FeaturedServices";
-import FlowerShopSection from "@/components/FlowerShopSection";
+
 import PostsList from "@/components/PostList";
 import SidebarContent from "@/components/sidebarcontent";
 import Image from "next/image";
@@ -33,8 +33,8 @@ export default function Home() {
       </div>
 
       {/* Title Section */}
-      <h1 className="font-bold flex justify-center text-6xl mt-5 bg-gradient-to-r from-violet-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent">
-        FLORIST IN  NAIROBI KENYA
+      <h1 className="font-bold flex justify-center md:text-6xl text-3xl mt-5 bg-gradient-to-r from-violet-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent">
+        ALL ABOUT TECH
       </h1>
         <FeaturedServices />
          <div>
@@ -42,8 +42,8 @@ export default function Home() {
       </div>
 
        <section>
-        <FAQSection />
-        <FlowerShopSection/>
+     
+     
        
       </section>
 

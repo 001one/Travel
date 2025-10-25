@@ -2,7 +2,7 @@ import { Flower, Leaf, Gift } from "lucide-react";
 
 export default function FeaturedServices() {
   return (
-    <div className="mt-12">
+    <div className="mt-12 hidden md:block">
       <h2 className="text-3xl font-bold text-center text-gray-800">Our Floral Services</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
         <div className="p-6 bg-white shadow-md rounded-lg flex flex-col items-center">
