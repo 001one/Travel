@@ -1,40 +1,47 @@
-import { Flower, Leaf, Gift } from "lucide-react";
-import { Phone, MapPin, MessageCircle } from "lucide-react"; // Importing icons for phone, location, and WhatsApp
+import { Brain, Shield, Cpu, Smartphone } from "lucide-react";
+import { Phone, MapPin, MessageCircle } from "lucide-react";
 
 const SidebarContent = () => {
   return (
     <div className="flex flex-col">
       <aside className="hidden lg:flex flex-col gap-6 p-6 w-72 bg-white rounded-2xl shadow-xl">
-        {/* Elegant Floral Arrangements Section */}
+        
+        {/* AI Tools Section */}
         <div className="flex items-center gap-3">
-          <Flower className="text-pink-600" size={28} />
-          <p className="text-lg font-semibold">Elegant Floral Arrangements</p>
+          <Brain className="text-purple-600" size={28} />
+          <p className="text-lg font-semibold">Smart AI Tools for Daily Life</p>
         </div>
 
-        {/* Fresh & Sustainable Flowers Section */}
+        {/* Cybersecurity Section */}
         <div className="flex items-center gap-3">
-          <Leaf className="text-green-600" size={28} />
-          <p className="text-lg font-semibold">Fresh & Sustainable Flowers</p>
+          <Shield className="text-red-600" size={28} />
+          <p className="text-lg font-semibold">Cybersecurity & Privacy Tips</p>
         </div>
 
-        {/* Custom Bouquets for Every Occasion Section */}
+        {/* Future Tech Section */}
         <div className="flex items-center gap-3">
-          <Gift className="text-yellow-600" size={28} />
-          <p className="text-lg font-semibold">Custom Bouquets for Every Occasion</p>
+          <Cpu className="text-blue-600" size={28} />
+          <p className="text-lg font-semibold">Future of Work with AI</p>
+        </div>
+
+        {/* App Recommendations */}
+        <div className="flex items-center gap-3">
+          <Smartphone className="text-green-600" size={28} />
+          <p className="text-lg font-semibold">Best Apps & Software</p>
         </div>
       </aside>
 
-      {/* Call/Contact Section with Icons */}
+      {/* Call/Contact Section */}
       <div className="mt-6 p-6 bg-white rounded-2xl shadow-xl">
-        <h1 className="text-2xl font-semibold mb-4">Visit Us or Order</h1>
+        <h1 className="text-2xl font-semibold mb-4">Contact Us</h1>
         
-        {/* Location with MapPin Icon */}
+        {/* Location */}
         <div className="flex items-center gap-3 mb-4">
           <MapPin className="text-blue-500" size={24} />
-          <p className="text-lg">Visit us at our flower shop in <span className="font-semibold">Kitengela</span>.</p>
+          <p className="text-lg">Get tech insights from <span className="font-semibold">anywhere</span>.</p>
         </div>
 
-        {/* Call/WhatsApp with Phone and WhatsApp Icons */}
+        {/* Phone / WhatsApp */}
         <div className="flex items-center gap-3">
           <Phone className="text-green-500" size={24} />
           <p className="text-lg">Call or WhatsApp us at <span className="font-semibold">0723785446</span></p>
