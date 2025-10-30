@@ -22,8 +22,19 @@ const POST_QUERY = `
     slug,
     image,
     publishedAt,
-    body,
-    categories[]->{ _id, title, slug } // ✅ ensures category refs come through
+    body[]{
+      ...,
+      _type == "externalImage" => {
+        _type,
+        url,
+        alt
+      },
+      _type == "youTube" => {
+        _type,
+        url
+      }
+    },
+    categories[]->{ _id, title, slug }
   },
   "categories": *[_type == "category"] | order(_createdAt desc)[0...6]{
     _id,
@@ -33,6 +44,7 @@ const POST_QUERY = `
   }
 }
 `;
+
 
 
 
@@ -55,6 +67,8 @@ export default async function PostPage(props: PostPageProps) {
 
 
 
+
+  console.log("🧠 Post body:", JSON.stringify(post?.body, null, 2));
 
 
 

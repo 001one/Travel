@@ -23,82 +23,82 @@ interface BodyProps {
 export default function Body({ blocks }: BodyProps) {
   const [modalImageUrl, setModalImageUrl] = useState<string | null>(null);
 
-  const serializers = {
+  const components = {
     types: {
-      youTube: ({ value }: { value: YouTubeNode }) => {
+      youTube: ({ value }: { value: YouTubeNode }) => (
+        <div className="relative w-full aspect-video my-4 overflow-hidden rounded-lg shadow">
+          <ReactPlayer url={value.url} width="100%" height="100%" controls />
+        </div>
+      ),
+
+      externalImage: ({ value }: { value: ExternalImageNode }) => {
+        if (!value?.url) return null;
+
+        const [orientation, setOrientation] = useState<
+          "portrait" | "landscape" | null
+        >(null);
+
+        // Detect whether the image is portrait or landscape
+        useEffect(() => {
+          const img = new window.Image();
+          img.src = value.url;
+          img.onload = () => {
+            setOrientation(img.width > img.height ? "landscape" : "portrait");
+          };
+        }, [value.url]);
+
+        const isPortrait = orientation === "portrait";
+
         return (
-          <div className="relative w-full aspect-video my-4 overflow-hidden rounded-lg shadow">
-            <ReactPlayer url={value.url} width="100%" height="100%" controls />
+          <div
+            onClick={() => setModalImageUrl(value.url)}
+            className={`relative mx-auto my-8 overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform duration-300
+              ${isPortrait ? "w-[80%] max-w-2xl aspect-[3/4]" : "w-[95%] max-w-6xl aspect-auto"}
+            `}
+          >
+            <img
+              src={value.url}
+              alt={value.alt || "External Image"}
+             
+              className="object-contain rounded-xl"
+              
+              sizes="(max-width: 768px) 100vw, 700px"
+            />
           </div>
         );
       },
-    externalImage: ({ value }: { value: ExternalImageNode }) => {
-  if (!value?.url) return null;
-
-  const [orientation, setOrientation] = useState<"portrait" | "landscape" | null>(null);
-
-  // Detect whether the image is portrait or landscape
-  useEffect(() => {
-    const img = new window.Image();
-    img.src = value.url;
-    img.onload = () => {
-      setOrientation(img.width > img.height ? "landscape" : "portrait");
-    };
-  }, [value.url]);
-
-  const isPortrait = orientation === "portrait";
-
-  return (
-<div
-  onClick={() => setModalImageUrl(value.url)}
-  className={`relative mx-auto my-8 overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform duration-300
-    ${isPortrait ? "w-[80%] max-w-2xl aspect-[3/4]" : "w-[95%] max-w-6xl aspect-auto"}
-  `}
->
-
-
-      <Image
-        src={value.url}
-        alt={value.alt || "External Image"}
-        fill
-        className="object-contain rounded-xl "
-        priority
-        sizes="(max-width: 768px) 100vw, 700px"
-      />
-    </div>
-  );
-},
-
     },
   };
 
   return (
     <>
-      <PortableText value={blocks} components={serializers} />
+      {/* ✅ Keep article body centered and full-width within its column */}
+      <div className="w-full max-w-3xl mx-auto px-4">
+        <PortableText value={blocks} components={components} />
+      </div>
 
-      {/* Modal */}
-    {modalImageUrl && (
-  <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
-    <button
-      onClick={() => setModalImageUrl(null)}
-      className="absolute top-6 right-6 text-white text-3xl font-bold hover:text-red-500"
-    >
-      &times;
-    </button>
+      {/* ✅ Modal for full-screen image preview */}
+      {modalImageUrl && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+          <button
+            onClick={() => setModalImageUrl(null)}
+            className="absolute top-6 right-6 text-white text-3xl font-bold hover:text-red-500"
+          >
+            &times;
+          </button>
 
-    <div className="relative w-[90vw] h-[80vh] max-w-6xl">
-      <Image
-        src={modalImageUrl}
-        alt="Full Image"
-        fill
-        className="object-contain rounded-lg"
-        sizes="(max-width: 768px) 100vw, 1024px"
-        priority
-      />
-    </div>
-  </div>
-)}
-
+          <div className="relative w-[90vw] h-[80vh] max-w-6xl">
+            <Image
+              src={modalImageUrl}
+              alt="Full Image"
+              fill
+              className="object-contain rounded-lg"
+              sizes="(max-width: 768px) 100vw, 1024px"
+              priority
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
