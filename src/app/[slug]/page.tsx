@@ -47,12 +47,13 @@ interface PostPageProps {
     slug: string;
   };
 }
-
 export default async function PostPage(props: PostPageProps) {
-  const params = await props.params; // ✅ explicitly await params once
-  const { post, categories } = await client.fetch(POST_QUERY, {
-    slug: params.slug,
-  });
+  const params = await props.params; // ✅ await the params object first
+  const slug = params.slug;          // ✅ safe to access now
+
+  const { post, categories } = await client.fetch(POST_QUERY, { slug });
+
+
 
 
 

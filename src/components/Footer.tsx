@@ -12,19 +12,11 @@ export default function Footer() {
           <div>
             <h2 className="text-lg font-semibold text-white">Get in Touch</h2>
             <p className="mt-2">
-  Let’s craft the perfect floral arrangement for your special occasion! Reach out to us today. 🌸🌿
-</p>
-            <div className="mt-4">
-              <p className="flex items-center gap-2">
-                <Mail className="w-5 h-5 text-blue-400" />
-                <a href="mailto:your@email.com" className="hover:text-blue-400">nzilanimakau18@gmail.com</a>
-              </p>
-              <p className="flex items-center gap-2 mt-2">
-                <Phone className="w-5 h-5 text-blue-400" />
-                <a href="tel:+254707200031" className="hover:text-blue-400">+254723785446</a>
-              </p>
-            </div>
-          </div>
+ Exploring the latest in tech innovation — honest reviews, hands-on tests, and real performance insights.
+ </p>
+    ,<br />
+ <p className="mt-15">Tech reviews made simple ⚙️ | Gadgets, laptops & mobile innovations 💡 | Real opinions, no hype!</p>
+      </div>
 
           {/* Quick Links */}
           <div>
@@ -33,7 +25,7 @@ export default function Footer() {
               <li><Link href="#home" className="hover:text-blue-400">Home</Link></li>
               <li><Link href="#home" className="hover:text-blue-400">Portfolio</Link></li>
               <li><Link href="#about" className="hover:text-blue-400">Services</Link></li>
-              <li><Link href="#about" className="hover:text-blue-400">FAQs</Link></li>
+              
               <li><Link href="#contact" className="hover:text-blue-400">Contact</Link></li>
             </ul>
           </div>
@@ -80,7 +72,7 @@ export default function Footer() {
 
         {/* Copyright Section */}
         <div className="text-center text-gray-500 text-sm mt-8 border-t border-gray-700 pt-4">
-          <p>&copy; {new Date().getFullYear()} Happier paradise florist. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Linus Tech Tips Reviews. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
