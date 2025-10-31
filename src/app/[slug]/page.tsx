@@ -68,7 +68,6 @@ export default async function PostPage(props: PostPageProps) {
 
 
 
-  console.log("🧠 Post body:", JSON.stringify(post?.body, null, 2));
 
 
 

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
+import SmartImage from "./SmartImage";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
@@ -56,14 +57,14 @@ export default function Body({ blocks }: BodyProps) {
               ${isPortrait ? "w-[80%] max-w-2xl aspect-[3/4]" : "w-[95%] max-w-6xl aspect-auto"}
             `}
           >
-            <img
-              src={value.url}
-              alt={value.alt || "External Image"}
-             
-              className="object-contain rounded-xl"
-              
-              sizes="(max-width: 768px) 100vw, 700px"
-            />
+       
+
+<SmartImage
+  src={value.url}
+  alt={value.alt || "External Image"}
+  className="object-contain rounded-xl"
+/>
+
           </div>
         );
       },
