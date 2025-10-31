@@ -21,6 +21,7 @@ const POST_QUERY = `
     title,
     slug,
     image,
+     excerpt,
     publishedAt,
     body[]{
       ...,
@@ -59,6 +60,25 @@ interface PostPageProps {
     slug: string;
   };
 }
+
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const post = await client.fetch<SanityDocument>(POST_QUERY, params);
+
+  return {
+    title: post?.title ? `Linus tech Tips Review | ${post.title}` : "Linus tech Tips Review | Post Not Found",
+    description: post?.excerpt ? `Linus tech Tips Review | we review Tech - ${post.excerpt}` : " Stay ahead with Tech expert insights, benchmarks, and honest opinions.",
+    openGraph: {
+      title: post?.title ? `Linus tech Tips Review | ${post.title}` : "Linus tech Tips Review | Post Not Found",
+      description: post?.excerpt ? `Linus tech Tips Review - ${post.excerpt}` : "Linus tech Tips Review - Stay ahead with Tech expert insights, benchmarks, and honest opinions.",
+      images: post?.image ? [{ url: urlFor(post.image)?.url() || "", alt: post.title }] : [],
+    },
+    icons: {
+      icon: "/favicon.ico", // Favicon for dynamic pages
+    }
+  };
+}
+
 export default async function PostPage(props: PostPageProps) {
   const params = await props.params; // ✅ await the params object first
   const slug = params.slug;          // ✅ safe to access now
