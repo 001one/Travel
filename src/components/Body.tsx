@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
@@ -35,50 +35,46 @@ export default function Body({ blocks }: BodyProps) {
       externalImage: ({ value }: { value: ExternalImageNode }) => {
         if (!value?.url) return null;
 
-        const [orientation, setOrientation] = useState<
-          "portrait" | "landscape" | null
-        >(null);
-
-        // Detect whether the image is portrait or landscape
-        useEffect(() => {
-          const img = new window.Image();
-          img.src = value.url;
-          img.onload = () => {
-            setOrientation(img.width > img.height ? "landscape" : "portrait");
-          };
-        }, [value.url]);
-
-        const isPortrait = orientation === "portrait";
-
         return (
           <div
             onClick={() => setModalImageUrl(value.url)}
-            className={`relative mx-auto my-8 overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform duration-300
-              ${isPortrait ? "w-[80%] max-w-2xl aspect-[3/4]" : "w-[95%] max-w-6xl aspect-auto"}
-            `}
+            className="cursor-pointer hover:scale-[1.02] transition-transform duration-300 my-8"
           >
-       
-
-<SmartImage
-  src={value.url}
-  alt={value.alt || "External Image"}
-  className="object-contain rounded-xl"
-/>
-
+            <SmartImage src={value.url} alt={value.alt || "External Image"} />
           </div>
         );
       },
     },
-  };
 
+    // ✅ Outside types, at the top level of components
+    list: {
+      bullet: ({ children }: any) => (
+        <ul className="list-disc list-outside ml-6 my-4 space-y-2">
+          {children}
+        </ul>
+      ),
+      number: ({ children }: any) => (
+        <ol className="list-decimal list-outside ml-6 my-4 space-y-2">
+          {children}
+        </ol>
+      ),
+    },
+
+    listItem: {
+      bullet: ({ children }: any) => (
+        <li className="text-lg leading-relaxed pl-2">{children}</li>
+      ),
+      number: ({ children }: any) => (
+        <li className="text-lg leading-relaxed pl-2">{children}</li>
+      ),
+    },
+  };
   return (
     <>
-      {/* ✅ Keep article body centered and full-width within its column */}
       <div className="w-full max-w-3xl mx-auto px-4">
         <PortableText value={blocks} components={components} />
       </div>
 
-      {/* ✅ Modal for full-screen image preview */}
       {modalImageUrl && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
           <button
