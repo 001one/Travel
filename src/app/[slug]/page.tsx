@@ -129,12 +129,10 @@ export default async function PostPage(props: PostPageProps) {
               </p>
             )}
 
-            {post?.categories?.[0]?._id && (
-              <RelatedCategoryPosts
-                categoryId={post.categories[0]._id}
-                currentPostSlug={params.slug} // ✅ fine to use directly
-              />
-            )}
+            <RelatedCategoryPosts
+              categoryId={post?.categories?.[0]?._id ?? null}
+              currentPostSlug={params.slug}
+            />
 
             {/* Categories grid */}
             <CategoriesGrid categories={categories || []} />

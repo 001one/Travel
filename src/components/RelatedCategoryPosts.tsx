@@ -15,12 +15,34 @@ const RELATED_QUERY = `
   }
 `;
 
-export default async function RelatedCategoryPosts({ categoryId, currentPostSlug }: any) {
-  const posts = await client.fetch(RELATED_QUERY, { categoryId, currentPostSlug });
+const FALLBACK_QUERY = `
+  *[_type == "post" && slug.current != $currentPostSlug]
+  | order(_createdAt desc)[0...10] {
+    _id,
+    title,
+    slug,
+    "thumbnailImage": coalesce(
+      image.asset->url,
+      body[_type == "externalImage"][0].url
+    )
+  }
+`;
+
+export default async function RelatedCategoryPosts({
+  categoryId,
+  currentPostSlug,
+}: any) {
+  let posts = categoryId
+    ? await client.fetch(RELATED_QUERY, { categoryId, currentPostSlug })
+    : [];
+
+  // Fallback to latest posts if no related posts found
+  if (!posts?.length) {
+    posts = await client.fetch(FALLBACK_QUERY, { currentPostSlug });
+  }
 
   if (!posts?.length) return null;
 
-  // Randomize and pick 4 posts
   const randomPosts = posts.sort(() => 0.5 - Math.random()).slice(0, 4);
 
   return (
@@ -39,7 +61,7 @@ export default async function RelatedCategoryPosts({ categoryId, currentPostSlug
                 alt={post.title}
                 width={500}
                 height={300}
-                className="object-cover w-full h-[240px] group-hover:scale-105 transition-transform duration-300"
+                className="object-cover w-full h-[240px] group-hover:scale-105 transition-transform duration-300 rounded-t-xl"
               />
             )}
             <h3 className="p-3 text-md font-semibold group-hover:text-blue-600 transition">
