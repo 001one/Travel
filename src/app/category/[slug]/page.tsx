@@ -37,7 +37,9 @@ export default async function CategoryPage({
       </h1>
 
       {category?.posts?.length === 0 ? (
-        <p className="text-gray-600 mt-10 text-center">No posts found in this category.</p>
+        <p className="text-gray-600 mt-10 text-center">
+          No posts found in this category.
+        </p>
       ) : (
         <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 w-full shadow-lg p-4 mt-6">
           {category.posts.map((post) => (
@@ -56,10 +58,6 @@ export default async function CategoryPage({
                     priority
                   />
                 </div>
-
-                <h2 className="text-xl font-semibold mt-2 line-clamp-2">
-                  {post.title || "Untitled Post"}
-                </h2>
 
                 <p className="text-sm text-gray-500">
                   {post.publishedAt

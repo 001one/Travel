@@ -11,7 +11,7 @@ const Navbar = () => {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Contact", href: "/#contact" },
-   
+
     { name: "About Us", href: "/#about" },
   ];
 
@@ -27,7 +27,9 @@ const Navbar = () => {
             height={60}
             className="object-contain"
           />
-          <span className="md:text-3xl text-2xl font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent hover:text-blue-500 active:text-blue-500 ">LINUS TECH TIPS REVIEW</span>
+          <span className="md:text-3xl text-2xl font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent hover:text-blue-500 active:text-blue-500 ">
+            LINUS TECH TIPS REVIEW
+          </span>
         </Link>
 
         {/* Navigation Links */}
@@ -44,16 +46,15 @@ const Navbar = () => {
         </nav>
 
         {/* Call-to-Action Button */}
-     <div className="hidden md:block">
-  <Link
-    href="/videos"
-    className="group bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all duration-200 shadow hover:shadow-2xl flex items-center gap-2 whitespace-nowrap  hover:scale-110"
-  >
-    Tech Categories
-    <ArrowRight className="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-5" />
-  </Link>
-</div>
-
+        <div className="hidden md:block">
+          <Link
+            href="/videos"
+            className="group bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all duration-200 shadow hover:shadow-2xl flex items-center gap-2 whitespace-nowrap  hover:scale-110"
+          >
+            Tech Categories
+            <ArrowRight className="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-5" />
+          </Link>
+        </div>
 
         {/* Mobile Menu Button */}
         <button
@@ -83,11 +84,9 @@ const Navbar = () => {
               href="/videos"
               onClick={() => setIsOpen(false)}
               className="group bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all duration-200 shadow hover:shadow-2xl flex items-center gap-2 whitespace-nowrap  "
-  >
-    All places to visit
-    <ArrowRight className="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-5 hover:Scale-155" />
-            
-             
+            >
+              All Tech Categories
+              <ArrowRight className="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-5" />
             </Link>
           </nav>
         </div>
