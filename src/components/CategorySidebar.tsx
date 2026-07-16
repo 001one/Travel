@@ -6,10 +6,11 @@ const CATEGORIES_QUERY = `*[_type == "category"]{_id, title}`;
 
 export default async function CategorySidebar() {
   // Fetch categories
-  const categories = await client.fetch<{ _id: string; title: string }[]>(CATEGORIES_QUERY);
+  const categories =
+    await client.fetch<{ _id: string; title: string }[]>(CATEGORIES_QUERY);
 
   return (
-    <aside className="w-[250px] h-full bg-white p-4 shadow-lg">
+    <aside className="w-[250px] h-full bg-white p-4 shadow-lg ml-30 rounded-lg">
       <h2 className="text-xl font-semibold mb-4">Categories</h2>
       <ul className="space-y-3">
         {categories.map((category) => (
