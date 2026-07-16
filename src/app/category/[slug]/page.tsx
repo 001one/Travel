@@ -33,7 +33,7 @@ export default async function CategoryPage({
   });
 
   return (
-    <main className="w-full min-h-screen px-4 sm:px-6 lg:px-8 mt-30">
+    <main className="w-full min-h-screen px-4 sm:px-6 lg:px-8 mt-5">
       <h1 className="font-bold flex justify-center text-5xl mt-5 text-blue-600">
         Posts in: {category?.title || slug}
       </h1>
