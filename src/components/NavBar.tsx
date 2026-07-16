@@ -47,7 +47,7 @@ const Navbar = () => {
         {/* CTA Button */}
         <div className="hidden md:block">
           <Link
-            href="/videos"
+            href="/categories"
             className="group bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-all duration-200 flex items-center gap-2 text-sm font-medium shadow-sm hover:shadow-md"
           >
             Tech Categories
@@ -83,7 +83,7 @@ const Navbar = () => {
             </Link>
           ))}
           <Link
-            href="/videos"
+            href="/categories"
             onClick={() => setIsOpen(false)}
             className="group bg-blue-600 text-white px-4 py-2.5 rounded-lg hover:bg-blue-700 transition-all duration-200 flex items-center gap-2 text-sm font-medium mt-1"
           >
