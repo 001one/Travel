@@ -1,4 +1,4 @@
-import { PortableText, type SanityDocument } from "next-sanity";
+import { type SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
@@ -10,7 +10,6 @@ import CategoriesGrid from "@/components/CategoriesGrid";
 import RelatedPostsSidebar from "@/components/RelatedPostsSidebar";
 import RelatedCategoryPosts from "@/components/RelatedCategoryPosts";
 
-// Enable ISR (optional)
 export const revalidate = 30;
 
 const POST_QUERY = `
@@ -20,8 +19,9 @@ const POST_QUERY = `
     title,
     slug,
     image,
-     excerpt,
+    excerpt,
     publishedAt,
+    "firstImage": body[_type == "externalImage"][0],
     body[]{
       ...,
       _type == "externalImage" => {
@@ -57,40 +57,59 @@ interface PostPageProps {
   };
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const post = await client.fetch<SanityDocument>(POST_QUERY, params);
+  const params = await props.params;
+  const { post } = await client.fetch<{ post: SanityDocument }>(
+    POST_QUERY,
+    params,
+  );
+
+  const title = post?.title
+    ? `${post.title} | Linus Tech Tips Review`
+    : "Linus Tech Tips Review | Post Not Found";
+
+  const description = post?.excerpt
+    ? post.excerpt
+    : "Stay ahead with expert tech insights, benchmarks, and honest opinions.";
+
+  const ogImage = post?.firstImage?.url ?? null;
 
   return {
-    title: post?.title
-      ? `Linus tech Tips Review | ${post.title}`
-      : "Linus tech Tips Review | Post Not Found",
-    description: post?.excerpt
-      ? `Linus tech Tips Review | we review Tech - ${post.excerpt}`
-      : " Stay ahead with Tech expert insights, benchmarks, and honest opinions.",
+    title,
+    description,
     openGraph: {
-      title: post?.title
-        ? `Linus tech Tips Review | ${post.title}`
-        : "Linus tech Tips Review | Post Not Found",
-      description: post?.excerpt
-        ? `Linus tech Tips Review - ${post.excerpt}`
-        : "Linus tech Tips Review - Stay ahead with Tech expert insights, benchmarks, and honest opinions.",
-      images: post?.image
-        ? [{ url: urlFor(post.image)?.url() || "", alt: post.title }]
+      title,
+      description,
+      type: "article",
+      publishedTime: post?.publishedAt,
+      images: ogImage
+        ? [
+            {
+              url: ogImage,
+              alt: post?.firstImage?.alt || post.title,
+              width: 1200,
+              height: 630,
+            },
+          ]
         : [],
     },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ogImage ? [ogImage] : [],
+    },
     icons: {
-      icon: "/favicon.ico", // Favicon for dynamic pages
+      icon: "/favicon.ico",
     },
   };
 }
 
 export default async function PostPage(props: PostPageProps) {
-  const params = await props.params; // ✅ await the params object first
-  const slug = params.slug; // ✅ safe to access now
+  const params = await props.params;
+  const slug = params.slug;
 
   const { post, categories } = await client.fetch(POST_QUERY, { slug });
 
@@ -134,12 +153,11 @@ export default async function PostPage(props: PostPageProps) {
               currentPostSlug={params.slug}
             />
 
-            {/* Categories grid */}
             <CategoriesGrid categories={categories || []} />
           </div>
         </div>
 
-        {/* Right Sidebar — visible only on large screens */}
+        {/* Right Sidebar */}
         <RelatedPostsSidebar />
       </div>
     </main>
