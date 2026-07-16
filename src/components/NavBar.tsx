@@ -24,9 +24,9 @@ const Navbar = () => {
             alt="Logo"
             width={52}
             height={52}
-            className="object-contain group-hover:scale-105 transition-transform duration-200"
+            className="object-contain group-hover:scale-105 transition-transform duration-200 "
           />
-          <span className="md:text-2xl text-xl font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
+          <span className="md:text-2xl text-lg font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
             LINUS TECH TIPS REVIEW
           </span>
         </Link>
