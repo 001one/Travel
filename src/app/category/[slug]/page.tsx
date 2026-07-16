@@ -21,19 +21,21 @@ const FALLBACK_IMAGE = "/fallback.jpg";
 export default async function CategoryPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
+
   const category = await client.fetch<{
     title: string;
     posts: SanityDocument[];
   }>(POSTS_BY_CATEGORY_QUERY, {
-    slug: params.slug,
+    slug: slug,
   });
 
   return (
     <main className="w-full min-h-screen px-4 sm:px-6 lg:px-8 mt-30">
       <h1 className="font-bold flex justify-center text-5xl mt-5 text-blue-600">
-        Posts in: {category?.title || params.slug}
+        Posts in: {category?.title || slug}
       </h1>
 
       {category?.posts?.length === 0 ? (
@@ -58,12 +60,11 @@ export default async function CategoryPage({
                     priority
                   />
                 </div>
-
-                <p className="text-sm text-gray-500">
-                  {post.publishedAt
-                    ? new Date(post.publishedAt).toLocaleDateString()
-                    : "Unknown date"}
-                </p>
+                <div className="p-3">
+                  <h3 className="text-sm font-semibold text-gray-800 line-clamp-2">
+                    {post.title}
+                  </h3>
+                </div>{" "}
               </Link>
             </li>
           ))}

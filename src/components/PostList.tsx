@@ -75,11 +75,11 @@ export default async function PostsList() {
                     <h3 className="text-md font-semibold text-gray-800 truncate">
                       {post.title}
                     </h3>
-                    <p className="text-sm text-gray-500">
+                    {/* <p className="text-sm text-gray-500">
                       {post.publishedAt
                         ? new Date(post.publishedAt).toLocaleDateString()
                         : "Unpublished"}
-                    </p>
+                    </p> */}
                   </div>
                 </Link>
               </li>
