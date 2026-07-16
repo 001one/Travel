@@ -3,13 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const images = [
-  "/gg.jpg",
-  "/kit.jpg",
-  "/woman2.jpg",
-  "/woman3.jpg",
-  "/woman.webp"
-];
+const images = ["/linus1.jpg", "/linus2.jpg", "/linus3.jpg"];
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,7 +22,7 @@ const Carousel = () => {
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1,
     );
   };
 
