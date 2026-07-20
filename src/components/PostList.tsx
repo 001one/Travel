@@ -4,7 +4,7 @@ import { client } from "@/sanity/client";
 import { ArrowRight } from "lucide-react";
 import ScrollableRow from "./ScrollableRow";
 
-export const revalidate = 0;
+export const revalidate = 30;
 
 const CATEGORY_WITH_POSTS_QUERY = `
   *[_type == "category"]{
