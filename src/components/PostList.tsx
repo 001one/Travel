@@ -24,6 +24,8 @@ const CATEGORY_WITH_POSTS_QUERY = `
 export default async function PostsList() {
   const categories = await client.fetch<SanityDocument[]>(
     CATEGORY_WITH_POSTS_QUERY,
+    {},
+    { next: { tags: ["post", "category"] } },
   );
   const categoriesWithPosts = categories.filter(
     (category) => category.posts?.length > 0,
