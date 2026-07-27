@@ -46,7 +46,37 @@ export default function Body({ blocks }: BodyProps) {
       },
     },
 
-    // ✅ Outside types, at the top level of components
+    block: {
+      h1: ({ children }: any) => (
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-8 mb-4 leading-tight">
+          {children}
+        </h1>
+      ),
+      h2: ({ children }: any) => (
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mt-8 mb-3 leading-tight">
+          {children}
+        </h2>
+      ),
+      h3: ({ children }: any) => (
+        <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mt-6 mb-3">
+          {children}
+        </h3>
+      ),
+      h4: ({ children }: any) => (
+        <h4 className="text-lg sm:text-xl font-semibold text-gray-700 mt-6 mb-2">
+          {children}
+        </h4>
+      ),
+      normal: ({ children }: any) => (
+        <p className="text-gray-700 leading-relaxed mb-4">{children}</p>
+      ),
+      blockquote: ({ children }: any) => (
+        <blockquote className="border-l-4 border-orange-400 pl-4 italic text-gray-600 my-6">
+          {children}
+        </blockquote>
+      ),
+    },
+
     list: {
       bullet: ({ children }: any) => (
         <ul className="list-disc list-outside ml-6 my-4 space-y-2">
@@ -69,6 +99,7 @@ export default function Body({ blocks }: BodyProps) {
       ),
     },
   };
+
   return (
     <>
       <div className="w-full max-w-3xl mx-auto px-4">
