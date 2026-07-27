@@ -48,12 +48,12 @@ export default function Body({ blocks }: BodyProps) {
 
     block: {
       h1: ({ children }: any) => (
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-8 mb-4 leading-tight">
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-8 mb-4 leading-tight underline decoration-gray-900">
           {children}
         </h1>
       ),
       h2: ({ children }: any) => (
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mt-8 mb-3 leading-tight">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mt-8 mb-3 leading-tight underline decoration-gray-900">
           {children}
         </h2>
       ),
