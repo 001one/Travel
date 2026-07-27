@@ -68,7 +68,7 @@ export default function Body({ blocks }: BodyProps) {
         </h4>
       ),
       normal: ({ children }: any) => (
-        <p className="text-gray-700 leading-relaxed mb-4">{children}</p>
+        <p className="text-gray-900 leading-relaxed mb-4">{children}</p>
       ),
       blockquote: ({ children }: any) => (
         <blockquote className="border-l-4 border-orange-400 pl-4 italic text-gray-600 my-6">
