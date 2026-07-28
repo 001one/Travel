@@ -43,7 +43,7 @@ export default async function CategoryPage({
           No posts found in this category.
         </p>
       ) : (
-        <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 w-full shadow-lg p-4 mt-6">
+        <ul className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6 w-full shadow-lg p-4 mt-6">
           {category.posts.map((post) => (
             <li
               key={post._id}
