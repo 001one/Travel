@@ -29,10 +29,10 @@ export default function ScrollableRow({ posts }: { posts: any[] }) {
       {/* Left Button */}
       <button
         onClick={() => scroll("left")}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-gray-100 -translate-x-3"
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 shadow-md rounded-full p-1.5 transition-opacity duration-200 hover:bg-gray-100 -translate-x-1"
         aria-label="Scroll left"
       >
-        <ChevronLeft className="w-5 h-5 text-gray-700" />
+        <ChevronLeft className="w-4 h-4 text-gray-700" />
       </button>
 
       {/* Scrollable List */}
@@ -71,10 +71,10 @@ export default function ScrollableRow({ posts }: { posts: any[] }) {
       {/* Right Button */}
       <button
         onClick={() => scroll("right")}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-gray-100 translate-x-3"
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 shadow-md rounded-full p-1.5 transition-opacity duration-200 hover:bg-gray-100 translate-x-1"
         aria-label="Scroll right"
       >
-        <ChevronRight className="w-5 h-5 text-gray-700" />
+        <ChevronRight className="w-4 h-4 text-gray-700" />
       </button>
     </div>
   );
