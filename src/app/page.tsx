@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "Linus Tech Tips Reviews | Your Source for Honest Tech Insights",
     description:
       "In-depth PC hardware and tech reviews covering GPUs, CPUs, gaming laptops, peripherals, and more.",
-    url: "https://neeotech.vercel.app",
+    url: "https://linustectips.com",
     type: "website",
   },
   twitter: {

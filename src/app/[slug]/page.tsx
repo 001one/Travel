@@ -1,3 +1,5 @@
+//slug post page
+
 import { type SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -117,7 +119,42 @@ export default async function PostPage(props: PostPageProps) {
 
   return (
     <main className="w-full min-h-screen px-4 sm:px-6 lg:px-8 pb-24">
+      {/* Structured data for Google */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post?.title,
+            description: post?.excerpt,
+            image: post?.firstImage?.url ? [post.firstImage.url] : [],
+            datePublished: post?.publishedAt,
+            dateModified: post?.publishedAt,
+            author: {
+              "@type": "Organization",
+              name: "Linus Tech Tips Review",
+              url: "https://linustectips.com",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "Linus Tech Tips Review",
+              url: "https://linustectips.com",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://linustectips.com/logo.png",
+              },
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `https://linustectips.com/${post?.slug?.current}`,
+            },
+          }),
+        }}
+      />
+
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:space-x-10">
+        {/* rest of existing content unchanged */}
         {/* Left/Main Content */}
         <div className="flex-1 space-y-12 text-lg sm:text-xl leading-relaxed">
           <Link
