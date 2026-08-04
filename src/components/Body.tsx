@@ -1,5 +1,6 @@
 "use client";
-
+import { STLReact } from "./stl-render-react/latest/index";
+import { STL, SanityTable } from "structured-table";
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { PortableText } from "@portabletext/react";
@@ -41,6 +42,37 @@ export default function Body({ blocks }: BodyProps) {
             className="cursor-pointer hover:scale-[1.02] transition-transform duration-300 my-8"
           >
             <SmartImage src={value.url} alt={value.alt || "External Image"} />
+          </div>
+        );
+      },
+      stlTableBlock: ({
+        value,
+      }: {
+        value: {
+          _key: string;
+          _type: string;
+          stlString?: string;
+          stlParsed?: string;
+          caption?: string;
+        };
+      }) => {
+        let tableData: SanityTable | null = null;
+        try {
+          if (value.stlParsed) {
+            tableData = JSON.parse(value.stlParsed) as SanityTable;
+          } else if (value.stlString) {
+            tableData = STL.parse(value.stlString);
+          }
+        } catch {
+          return null;
+        }
+        if (!tableData) return null;
+        if (value.caption) {
+          tableData.caption = value.caption;
+        }
+        return (
+          <div className="stl-table overflow-x-auto my-8 rounded-xl border border-gray-200 shadow-sm">
+            <STLReact.Table data={tableData} className="w-full" />
           </div>
         );
       },
