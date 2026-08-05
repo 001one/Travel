@@ -71,7 +71,7 @@ export default function Body({ blocks }: BodyProps) {
           tableData.caption = value.caption;
         }
         return (
-          <div className="stl-table overflow-x-auto my-8 rounded-xl border border-gray-200 shadow-sm">
+          <div className="stl-table overflow-x-auto my-8 rounded-xl border border-gray-200 shadow-sm w-full">
             <STLReact.Table data={tableData} className="w-full" />
           </div>
         );
