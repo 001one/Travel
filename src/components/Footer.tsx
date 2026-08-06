@@ -111,7 +111,7 @@ export default function Footer() {
             className="flex items-center gap-1.5 hover:text-blue-400 transition-colors"
           >
             <Image
-              src="/neeo-logo.png"
+              src="/logo.webp"
               alt="Neeo Designers"
               width={18}
               height={18}
