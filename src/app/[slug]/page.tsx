@@ -118,7 +118,7 @@ export default async function PostPage(props: PostPageProps) {
   const postImageUrl = post?.image ? urlFor(post.image)?.url() : null;
 
   return (
-    <main className="w-full min-h-screen px-4 sm:px-2 lg:px-8 pb-24">
+    <main className="w-full min-h-screen px-0 sm:px-2 lg:px-8 pb-24">
       {/* Structured data for Google */}
       <script
         type="application/ld+json"
