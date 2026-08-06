@@ -2,6 +2,48 @@ import { client } from "@/sanity/client";
 import type { SanityDocument } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+
+  const category = await client.fetch<{ title: string }>(
+    POSTS_BY_CATEGORY_QUERY,
+    { slug },
+  );
+
+  const title = category?.title
+    ? `${category.title} | Linus Tech Tips Review`
+    : "Tech Category | Linus Tech Tips Review";
+
+  const description = category?.title
+    ? `Browse all ${category.title} reviews, comparisons, and buying guides. Find the best ${category.title} with expert insights and honest opinions.`
+    : "Browse tech reviews, comparisons, and buying guides on Linus Tech Tips Review.";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `https://linustectips.com/category/${slug}`,
+      type: "website",
+      siteName: "Linus Tech Tips Reviews",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    alternates: {
+      canonical: `https://linustectips.com/category/${slug}`,
+    },
+  };
+}
 
 const POSTS_BY_CATEGORY_QUERY = `
   *[_type == "category" && slug.current == $slug][0]{

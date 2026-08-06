@@ -1,6 +1,30 @@
 import { client } from "@/sanity/client";
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tech Categories | Linus Tech Tips Review",
+  description:
+    "Browse all tech review categories including GPUs, laptops, smartphones, TVs, and more. Find expert reviews, comparisons, and buying guides.",
+  openGraph: {
+    title: "Tech Categories | Linus Tech Tips Review",
+    description:
+      "Browse all tech review categories including GPUs, laptops, smartphones, TVs, and more.",
+    url: "https://linustectips.com/categories",
+    type: "website",
+    siteName: "Linus Tech Tips Reviews",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tech Categories | Linus Tech Tips Review",
+    description:
+      "Browse all tech review categories including GPUs, laptops, smartphones, TVs, and more.",
+  },
+  alternates: {
+    canonical: "https://linustectips.com/categories",
+  },
+};
 
 const CATEGORIES_QUERY = `
   *[_type == "category"] | order(_createdAt desc) {
