@@ -7,7 +7,7 @@ import ScrollableRow from "./ScrollableRow";
 export const revalidate = 30;
 
 const CATEGORY_WITH_POSTS_QUERY = `
-  *[_type == "category"]{
+  *[_type == "category"] | order(_createdAt asc) {
     _id,
     title,
     slug,
