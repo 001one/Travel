@@ -44,6 +44,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = [
     { url: `${BASE_URL}/`, lastModified: new Date().toISOString() },
     { url: `${BASE_URL}/categories`, lastModified: new Date().toISOString() },
+    { url: `${BASE_URL}/about`, lastModified: new Date().toISOString() },
+    { url: `${BASE_URL}/contact`, lastModified: new Date().toISOString() },
+    {
+      url: `${BASE_URL}/privacy-policy`,
+      lastModified: new Date().toISOString(),
+    },
+    { url: `${BASE_URL}/terms`, lastModified: new Date().toISOString() },
   ];
 
   return [...staticPages, ...categories, ...posts];

@@ -1,3 +1,5 @@
+//NavBar.tsx
+
 "use client";
 
 import { useState } from "react";
@@ -10,8 +12,8 @@ const Navbar = () => {
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Contact", href: "/#contact" },
-    { name: "About Us", href: "/#about" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (

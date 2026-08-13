@@ -5,15 +5,19 @@ export default function Footer() {
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "Tech Categories", href: "/categories" },
-    { name: "About Us", href: "/#about" },
-    { name: "Contact", href: "/#contact" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact", href: "/contact" },
   ];
-
   const categories = [
     { name: "GPUs & CPUs", href: "/category/gpus-cpus" },
     { name: "Laptops", href: "/category/laptops" },
     { name: "Phones", href: "/category/phones" },
     { name: "TVs & Monitors", href: "/category/tvs-monitors" },
+  ];
+
+  const legalLinks = [
+    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Terms of Service", href: "/terms" },
   ];
 
   return (
@@ -103,7 +107,17 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Linus Tech Tips Review. All Rights
             Reserved.
           </p>
-
+          <div className="flex items-center gap-5">
+            {legalLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="hover:text-white transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
           <a
             href="https://www.onedesignersdesign.com/webdesigner"
             target="_blank"
