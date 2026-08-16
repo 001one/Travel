@@ -62,6 +62,13 @@ export default function RootLayout({
         {/* Canonical */}
         <link rel="canonical" href="https://linustectips.com" />
 
+        {/* Google AdSense */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3715756696954182"
+          crossOrigin="anonymous"
+        />
+
         {/* Structured Data */}
         <script
           type="application/ld+json"
