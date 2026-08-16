@@ -92,6 +92,13 @@ export default function PrivacyPolicyPage() {
               </a>
               .
             </p>
+            <p>
+              If you&apos;re visiting from the European Economic Area, the UK,
+              or Switzerland, you&apos;ll be shown a consent banner before any
+              personalized ads or non-essential cookies are set. You can choose
+              to consent, decline, or manage your preferences at any time
+              through that banner or your browser&apos;s cookie settings.
+            </p>
           </section>
 
           <section>
